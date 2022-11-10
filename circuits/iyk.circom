@@ -5,15 +5,14 @@ include "ecdsa.circom";
 /**
     Goals of the entire protocol
     --------------------
-
     - Verify nonce was not used
-    - 
+    - Don't allow MEV searcher to claim the reward
+        - Signature from dummy signer must be in a "hidden envelope"
 */
 
 /**
     ZL Setup
     --------
-
     - inputs
         - nonce (public)
         - chip signature (private)
@@ -54,6 +53,7 @@ template IYKPrivateNFTClaim(n, k) {
     }
 }
 
+// here is where we actually define which inputs are public
 component main {
     public [
         nonce,
