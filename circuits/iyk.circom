@@ -37,19 +37,19 @@ template IYKPrivateNFTClaim(n, k) {
     // 1) verify the signature of the nonce is from the chip public key
     component ECDSAVerify = ECDSAVerifyNoPubkeyCheck(n, k);
     for (var idx = 0; idx < k; idx++) {
-        ECDSAVerify.msghash[idx] = nonce[idx];
-        ECDSAVerify.pubkey[0][idx] = chipPubkey[0][idx];
-        ECDSAVerify.pubkey[1][idx] = chipPubkey[1][idx];
-        ECDSAVerify.r[idx] = chipR[idx];
-        ECDSAVerify.s[idx] = chipS[idx];
+        ECDSAVerify.msghash[idx] <== nonce[idx];
+        ECDSAVerify.pubkey[0][idx] <== chipPubkey[0][idx];
+        ECDSAVerify.pubkey[1][idx] <== chipPubkey[1][idx];
+        ECDSAVerify.r[idx] <== chipR[idx];
+        ECDSAVerify.s[idx] <== chipS[idx];
     }
     ECDSAVerify.result === 1;
     
     // 2) constrain pubkey with a dummy square
     signal pubkeySquared[2][k];
     for (var idx = 0; idx < k; idx++) {
-        pubkeySquared[0][idx] = chipPubkey[0][idx] * chipPubkey[0][idx];
-        pubkeySquared[1][idx] = chipPubkey[1][idx] * chipPubkey[1][idx];
+        pubkeySquared[0][idx] <== chipPubkey[0][idx] * chipPubkey[0][idx];
+        pubkeySquared[1][idx] <== chipPubkey[1][idx] * chipPubkey[1][idx];
     }
 }
 
