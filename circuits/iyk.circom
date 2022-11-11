@@ -25,7 +25,7 @@ include "ecdsa.circom";
         2) constrain pubkey with a dummy square
 */
 template IYKPrivateNFTClaim(n, k) {
-    // chip private data
+    // chip data
     signal input nonce[k];
     signal input chipPubkey[2][k];
     signal input chipR[k];
